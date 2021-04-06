@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+    @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Norican&display=swap');
+
+    input[type="checkbox"]#hamburger {
+      position: fixed;
+      top: -999%;
+      left: -999%;
+    }
+
+    label[for="hamburger"] {
+      display: block;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      height: 50px;
+      width: 50px;
+      background: #1D2326;
+      z-index: 1030;
+      cursor: pointer;
+    }
+
+    label[for="hamburger"]>ul {
+      width: 100%;
+      height: 60%;
+      position: Absolute;
+      top: 20%;
+      left: 0;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-flow: row wrap;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    label[for="hamburger"]>ul>li {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: auto;
+      transition: all .4s ease;
+      position: relative;
+      top: 0;
+      bottom: 0;
+    }
+
+    input[type="checkbox"]:checked#hamburger+nav+label>ul>li:first-child {
+      transform: rotate(45deg) translateY(-2px) translateX(-4px);
+      top: 40%;
+    }
+
+    input[type="checkbox"]:checked#hamburger+nav+label>ul>li:last-child {
+      transform: rotate(-45deg) translateY(-6px) translateX(4px);
+      bottom: 40%;
+      left: 0;
+    }
+
+    input[type="checkbox"]:checked#hamburger+nav {
+      top: 0;
+    }
+
+    input[type="checkbox"]:checked#hamburger+nav>.navItem:nth-child(1),
+    input[type="checkbox"]:checked#hamburger+nav>.navItem:nth-child(2),
+    input[type="checkbox"]:checked#hamburger+nav>.navItem:nth-child(3),
+    input[type="checkbox"]:checked#hamburger+nav>.navItem:nth-child(4),
+    input[type="checkbox"]:checked#hamburger+nav>.navItem:nth-child(5) {
+      top: 0;
+    }
+
+    #nav {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: -100vh;
+      left: 0;
+      display: flex;
+      flex-flow: nowrap;
+      justify-content: space-between;
+      transition: top .3s ease;
+    }
+
+    .navItem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: row wrap;
+      flex-direction: column;
+      width: 20%;
+      height: 99%;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .navItem span {
+      display: block;
+      width: 100%;
+      padding: 7.5px 0 7.5px 0;
+      text-align: Center;
+      font-size: 24px;
+      font-family: 'Roboto Condensed';
+      text-transform: uppercase;
+    }
+
+    .navItem:nth-child(odd) {
+      background-color: #ff66b3;
+      box-shadow: 0px 15px 0px 0px #4ddbff;
+    }
+
+    .navItem:nth-child(odd):hover {
+      background-color: #ff3399;
+    }
+
+    .navItem:nth-child(odd)::Before {
+      color: white;
+      text-shadow: 2px 2px 1px black;
+      font-size: 48px;
+      z-index: 5;
+      opacity: .9;
+    }
+
+    .navItem:nth-child(odd) span {
+      color: white;
+    }
+
+    .navItem:nth-child(even) {
+      background-color: #4ddbff;
+      box-shadow: 0px 15px 0px 0px #ff66b3;
+    }
+
+    .navItem:nth-child(even):hover {
+      background-color: #00ccff;
+    }
+
+    .navItem:nth-child(even)::Before {
+      color: black;
+      text-shadow: 2px 2px 1px black;
+      font-size: 56px;
+      z-index: 5;
+      opacity: .9;
+    }
+
+    .navItem:nth-child(even) span {
+      color: #611427;
+    }
+
+    .navItem:nth-child(1) {
+      top: -40vh;
+      transition: top 1s ease;
+    }
+
+    .navItem:nth-child(2) {
+      top: -80vh;
+      transition: top 1.2s ease;
+    }
+
+    .navItem:nth-child(3) {
+      top: -120vh;
+      transition: top 1.4s ease;
+    }
+
+    .navItem:nth-child(4) {
+      top: -160vh;
+      transition: top 1.6s ease;
+    }
+
+    .navItem:nth-child(5) {
+      top: -200vh;
+      transition: top 1.8s ease;
+    }
+
+    .navItem::after {
+      content: "";
+      position: Absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: url(https://s-media-cache-ak0.pinimg.com/736x/18/08/11/180811c6f275e8134a32121c6a33ded9.jpg);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      opacity: 1;
+      z-index: -1;
+    }
+
+    body {
+      font-size: 0px;
+      background-color: #b3edff;
+    }
+
+    .left-bar {
+      overflow: hidden;
+      width: 18vw;
+      height: 872px;
+      float: left;
+    }
+
+    .left-bar img {
+      width: 100vw;
+      height: 100vw
+    }
+
+    .right-bar {
+      overflow: hidden;
+      width: 18vw;
+      height: 872px;
+      float: right;
+    }
+
+    .right-bar img {
+      width: 100vw;
+      height: 100vw
+    }
+
+    .top-bar {
+      overflow: hidden;
+      width: 100%;
+      height: 4vw;
+      vertical-align: top;
+    }
+
+    .top-bar img {
+      width: 1000vw;
+      height: 1000vw;
+    }
+
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 1vw;
+      width: 37%;
+      height: 45vw;
+    }
+  </style>
+
+<body>
+  <div class="top-bar">
+    <h1>
+      <a href=""><img src="https://i.ibb.co/7bs4McS/Ice-cream-seamless-pattern-Ice-cream-with-waffle-cones-on-pink-background.jpg" alt="Ice-cream-seamless-pattern-Ice-cream-with-waffle-cones-on-pink-background" border="0"></a>
+    </h1>
+  </div>
+  <div class="left-bar">
+    <h1>
+      <a href=""><img src="https://i.ibb.co/7bs4McS/Ice-cream-seamless-pattern-Ice-cream-with-waffle-cones-on-pink-background.jpg" alt="Ice-cream-seamless-pattern-Ice-cream-with-waffle-cones-on-pink-background" border="0"></a>
+      <h1>
+  </div>
+  <div class="right-bar">
+    <h1>
+      <a href=""><img src="https://i.ibb.co/7bs4McS/Ice-cream-seamless-pattern-Ice-cream-with-waffle-cones-on-pink-background.jpg" alt="Ice-cream-seamless-pattern-Ice-cream-with-waffle-cones-on-pink-background" border="0"></a>
+      <h1>
+  </div>
+  <div class="center">
+    <h1>
+      <a href=""><img src="https://i.ibb.co/C2vLrQw/IMG-5731.jpg" alt="IMG-5731" border="0"></a>
+    </h1>
+  </div>
+</body>
+</head>
+<input type="checkbox" name="hamburger" id="hamburger" />
+<nav id="nav">
+  <a href="index.html" class="navItem fa fa-home"><span>Home</span></a>
+  <a href="treats.html" class="navItem fa fa-shopping-basket"><span>Treats</span></a>
+  <a href="snowcone.html" class="navItem fa fa-film"><span>Snowcones</span></a>
+  <a href="calendar.html" class="navItem fa fa-automobile"><span>Calendar</span></a>
+  <a href="contact.html" class="navItem fa fa-envelope"><span>Contact</span></a>
+</nav>
+<label for="hamburger">
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+</label>
+
+</html>
